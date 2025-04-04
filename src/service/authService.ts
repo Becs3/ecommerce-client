@@ -11,7 +11,7 @@ export type tokenResponsType = {
 export const signInToken = async() => {
     try{
         axios.defaults.withCredentials = true;
-        const respons = await axios.post(API_URL + "auth/login", {
+        const respons = await axios.post(API_URL + "/auth/login", {
             username:"Admin",
             password: "123"
         });
