@@ -12,7 +12,7 @@ export const Cart = () => {
     const {cart} = useCart();
     const {createOrderHandler, updateOrderHandler} = useOrder();
     const [custId, setCustId] = useState<number>(0)
-    const [sessionId, setSessionId] = useState("");
+    //const [sessionId, setSessionId] = useState("");
 
     useEffect(() => {
       const storedID = localStorage.getItem("customer_id"); 
@@ -87,9 +87,9 @@ export const Cart = () => {
       const data = await response.json();
       console.log(data.session_id)
 
-      /* const session_id = data.session_id
+      const session_id = data.session_id
       if(session_id) {
-        setSessionId(session_id)
+        //setSessionId(session_id)
         const update = await updateOrderHandler(orderId, {
           order_status: "unpaid", 
           payment_id: session_id, 
@@ -104,7 +104,7 @@ export const Cart = () => {
         
       } else {
         console.log("id not found")
-      } */
+      } 
 
 
       // Redirect to Stripe Hosted Checkout

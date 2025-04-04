@@ -16,6 +16,7 @@ export const OrderConfirmatin = () => {
   const [customer, setCustomer] = useState<ICustomer|null>(null);
   const {fetchProductByIdHandler} =useProducts();
   const {updateProductHandler} = useProducts();
+  const {updateOrderHandler} = useOrder();
 
   //get order
    useEffect(() => {
@@ -37,7 +38,7 @@ export const OrderConfirmatin = () => {
   }, []) 
 
   //update orderstatus
-/*   useEffect(()=> {
+   useEffect(()=> {
     const updateOrder = async () => {
       if(!order) return; 
       if(!session_id) return;
@@ -58,7 +59,7 @@ export const OrderConfirmatin = () => {
     }
 
     updateOrder();
-  }, [order]) */
+  }, [order]) 
 
   //get Customer 
   useEffect(() => {
@@ -77,16 +78,18 @@ export const OrderConfirmatin = () => {
   }, [order]);
 
   //Update Product stock
-/*    const FetchProductId = async(id:number) => {
+    const FetchProductId = async(id:number) => {
     try{
     const Product = await fetchProductByIdHandler(id)
     console.log("fetched product", Product)
     } catch (error) {
       console.log("problem fetching product", error)
     }
-  } */
+  } 
 
- /*  useEffect(() => {
+  console.log(FetchProductId)
+
+  useEffect(() => {
     const updateOrderItems = async () => {
       if (!order) return;
       console.log("in updateOrder");
@@ -118,7 +121,7 @@ export const OrderConfirmatin = () => {
   
     updateOrderItems(); 
   
-  }, [order]);  */
+  }, [order]); 
 
   console.log("order", order)
   console.log("customer", customer) 
