@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 
-export const API_URL = "https://eshop-api-lime.vercel.app/";
+export const API_URL = "https://eshop-api-lime.vercel.app";
 
 export const handleRequest = async<T>(request: Promise<AxiosResponse<T>>): Promise<T> => {
   try{
