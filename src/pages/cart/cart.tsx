@@ -7,7 +7,7 @@ import { useOrder } from "../../hooks/useOrder";
 import { IOrder } from "../../models/order";
 import { IOrderItem } from "../../models/orderItem";
 import { useCart } from "../../hooks/useCart";
-import { API_URL } from "src/service/baseService";
+import { API_URL } from "../../service/baseService";
 
 export const Cart = () => {
     const {cart} = useCart();
@@ -75,7 +75,7 @@ export const Cart = () => {
       console.log("order id:", orderId)
 
       const response = await fetch(
-        API_URL + "/create-checkout-session-hosted",
+        API_URL + "/stripe/create-checkout-session-hosted",
         {
           method: "POST",
           headers: {
