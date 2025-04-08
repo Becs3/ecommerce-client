@@ -27,8 +27,8 @@ export const Orders = () => {
     
     return(
     <>
-    <AdminHeader />
     <div className="list-container">
+    <AdminHeader />
         <h2>Orders</h2>
         <div>
         <section>
