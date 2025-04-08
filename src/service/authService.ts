@@ -8,12 +8,27 @@ export type tokenResponsType = {
     token: string
 }
 
-export const signInToken = async() => {
+/* export const signInToken = async() => { 
     try{
         axios.defaults.withCredentials = true;
         const respons = await axios.post(API_URL + "/auth/login", {
             username:"Admin",
             password: "123"
+        });
+
+        return respons.data
+    } catch(error) {
+        console.log(error);
+        throw error;
+    }
+} */
+
+export const signInToken = async(username:string, password:string) => {
+    try{
+        axios.defaults.withCredentials = true;
+        const respons = await axios.post(API_URL + "/auth/login", {
+            username,
+            password
         });
 
         return respons.data

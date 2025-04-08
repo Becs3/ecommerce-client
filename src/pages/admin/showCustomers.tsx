@@ -25,8 +25,8 @@ export const ShowCustomers = () => {
 
     return(
     <>
-    <AdminHeader />
     <div className="list-container">
+    <AdminHeader />
     <h2> Customers </h2>
     <div>
         <Link to="createCustomer">Add new customer</Link>

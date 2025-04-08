@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useRef, useState } from "react";
+import { createContext, PropsWithChildren, useContext, useRef, useState } from "react";
 import { User } from "../models/user";
 import { clearTokens, refreshToken, signInToken } from "../service/authService";
 import axios from "axios";
@@ -6,7 +6,7 @@ import axios from "axios";
 type AuthContextType = {
     user: User | null,
     isLoading: boolean,
-    login: () => void,
+    login: (username:string, password: string) => void,
     logout: () => void,
     refreshTokenHandler: () => void
   }
@@ -20,10 +20,10 @@ type AuthContextType = {
     const timeoutID = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   
-    const login = async () => {
+    const login = async (username:string, password:string) => {
       setIsLoading(true)
       try {
-        const response = await signInToken()
+        const response = await signInToken(username, password)
         console.log(response)
         axios.defaults.headers.common['Authorization'] = "Bearer " + response.token
         setUser(response.user)
@@ -71,6 +71,7 @@ type AuthContextType = {
       </AuthContext.Provider>
     )
   } 
+
   
   
   export default AuthContext

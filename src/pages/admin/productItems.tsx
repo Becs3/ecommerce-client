@@ -24,8 +24,8 @@ export const ProductItems = () => {
 
     return(
     <>
-    <AdminHeader />
     <div className="list-container">
+    <AdminHeader />
     <h2> Products </h2>
     <div>
         <Link to="createProduct">Add new product</Link>
