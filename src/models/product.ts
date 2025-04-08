@@ -25,4 +25,4 @@ export interface IProduct extends RowDataPacket {
     ) {}
 }
 
-export type updateProd = Pick<IProduct, "name" | "description" | "price" | "category" | "stock">
+export type updateProd = Pick<IProduct, "name" | "description" | "price" | "category" | "stock" | "image">

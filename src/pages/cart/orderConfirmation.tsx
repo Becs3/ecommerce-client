@@ -109,6 +109,7 @@ export const OrderConfirmatin = () => {
                 price: fetchedProduct.price,
                 category: fetchedProduct.category,
                 stock: updatedStock,
+                image: fetchedProduct.image
               });
               console.log("Updated product before stock:", fetchedProduct.stock, "new stock", updatedStock);
             } catch (error) {
@@ -126,8 +127,13 @@ export const OrderConfirmatin = () => {
   console.log("order", order)
   console.log("customer", customer) 
 
+  console.log("setting customer_id to empty")
   localStorage.setItem("customer_id", JSON.stringify(""));
+  console.log("setting cart to empty now")
   localStorage.setItem("cart", JSON.stringify([]));
+
+  console.log("cart is now:", localStorage.getItem("cart"));
+  console.log("customer_id is now", localStorage.getItem("customer_id"));
 
     return(
         <>

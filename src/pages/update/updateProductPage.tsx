@@ -27,7 +27,8 @@ export const UpdateProductPage = () => {
             setProduct({...product, category: e.currentTarget.value})
         if(target.name === "stock")
         setProduct({...product, stock: +e.currentTarget.value})
-
+        if(target.name === "image")
+            setProduct({...product, image: e.currentTarget.value})
     }
 
     const handleSubmit = async (e:FormEvent) => {
@@ -78,6 +79,12 @@ export const UpdateProductPage = () => {
             <input type="number"
             name="stock"
             value={product?.stock ?? ""} 
+            onChange={handleChange}
+            />
+            <p>image:</p>
+            <input type="text"
+            name="image"
+            value={product?.image ?? ""} 
             onChange={handleChange}
             />
             <button type="submit">Update product</button>

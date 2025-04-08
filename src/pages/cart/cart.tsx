@@ -16,10 +16,24 @@ export const Cart = () => {
     //const [sessionId, setSessionId] = useState("");
 
     useEffect(() => {
-      const storedID = localStorage.getItem("customer_id"); 
-      if(storedID){
-        const customerID =Number( JSON.parse(storedID));
-        setCustId(customerID)
+      const storedID = localStorage.getItem("customer_id");
+  
+      if (storedID) {
+        const customerID = Number(JSON.parse(storedID));
+        if (!isNaN(customerID) && customerID > 0) {
+          setCustId(customerID);
+        } else {
+          console.warn("Invalid Customer ID found in localStorage.");
+        }
+      } else {
+        console.warn("No Customer ID found in localStorage.");
+      }
+    }, []);
+  
+    useEffect(() => {
+      if (custId > 0) {
+        console.log("Saving Customer ID:", custId);
+        localStorage.setItem("customer_id", JSON.stringify(custId));
       }
     }, [custId]);
 
