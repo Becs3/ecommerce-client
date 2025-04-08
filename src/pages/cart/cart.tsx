@@ -44,10 +44,10 @@ export const Cart = () => {
     unit_price: item.product.price,
   }));
 
-
   const CustomerData = (customer: Customer | null) => {
     if (customer) {
       localStorage.setItem("customer_id", JSON.stringify(customer.id));
+      setCustId(customer.id); 
       console.log("Customer id saved:", customer.id);
     }
   };
