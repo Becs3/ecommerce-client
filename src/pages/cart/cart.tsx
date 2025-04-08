@@ -128,10 +128,10 @@ export const Cart = () => {
       <div>
         <CartCustomerDetails CustomerData={CustomerData}/>
       </div>
-      </div>
       <form onSubmit={handleSubmit}>
         <button type="submit">To checkout</button>
       </form>
+      </div>
       </>
     )}
     </>

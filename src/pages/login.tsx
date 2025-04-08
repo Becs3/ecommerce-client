@@ -1,6 +1,7 @@
 import { Navigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import { useState } from "react";
+import "./adminList.css"
 
 export const Login = () => {
 
@@ -19,6 +20,7 @@ export const Login = () => {
 
     return(
         <>
+        <div className="list-container">
         <input type="text"
         placeholder="username"
         value={username}
@@ -29,6 +31,7 @@ export const Login = () => {
         onChange={(e) => setPassword(e.target.value)} />
         
         <button onClick={handleLogin}>Log In</button>
+        </div>
         </>
     )
 }
