@@ -14,8 +14,10 @@ interface IItem {
 export const SearchField = () => {
     const [search, setSearch] = useState("");
     const [items, setItems] = useState<IItem[]>([]);
+    const [startIndex, setStartIndex] = useState<number>(1); 
+  const [totalResults, setTotalResults] = useState<number>(0);
 
-    const handleSubmit = async(e:FormEvent) => {
+    const handleSubmit = async(e:FormEvent, newStartIndex = 1) => {
         e.preventDefault();
 
         try{
@@ -23,12 +25,25 @@ export const SearchField = () => {
                 params: {
                     q: search,
                     key: "AIzaSyDITH2Uodl-gRbDOTkTswgrjnGRdf2UyAM",
-                    cx: "a1d5341d6864e43b3"
+                    cx: "a1d5341d6864e43b3",
+                    start: newStartIndex,
+                    num: 10
                 }
             })
-            console.log(response.data)
-            console.log(response.data.items)
-            setItems(response.data.items)
+
+            const result = response.data;
+
+            if (search.length <= 1) {
+                throw new Error('Must contain characters')
+              }
+              if (result.items === undefined) {
+                throw new Error('No search results')
+              }
+
+            console.log(result)
+            setItems(result.items)
+            setTotalResults(result.searchInformation.totalresults);
+            setStartIndex(newStartIndex)
         }
         catch (error) {
             throw new Error
@@ -37,8 +52,8 @@ export const SearchField = () => {
 
     return(
         <>
-        <div>
-        <form onSubmit={handleSubmit}>
+        <div className="search-container">
+        <form onSubmit={(e) => {handleSubmit(e)}}>
             <h3>Didn't find what you were looking for?</h3>
         <input type="text" 
         placeholder="Search"
@@ -49,23 +64,37 @@ export const SearchField = () => {
         </div>
 
         <div>
-            {items.map((i) => (
+        {!items ? (
+          <p>There are no results</p>
+        ) : (
+            items.map((i) => (
                 <div key={i.title} className="item-container">
-                <section>
+                <section className="item-section">
                     {i.pagemap.cse_thumbnail && (
                     <img src={i.pagemap.cse_thumbnail[0].src} alt={i.title} />)}
                     {!i.pagemap.cse_thumbnail && (
                     <img src={'https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg'} />
                   )}
                 </section>
-                <section>
+                <section className="item-section">
                     <h3>{i.title}</h3>
                     <p>{i.snippet}</p>
                     <a href={i.link} target="_blank" rel="noopener noreferrer"> To product page </a>
                 </section>
                 </div>
             ))
-        }
+        )}
+        <div className="pagination">
+              <button disabled={startIndex <= 1} 
+                onClick={(e) => handleSubmit(e, startIndex - 10)}> 
+                Previous 
+                </button>
+
+              <button disabled={startIndex + 10 > totalResults} 
+                onClick={(e) => handleSubmit(e, startIndex + 10)}>
+                Next
+              </button>
+            </div>
         </div>
         </>
     )
