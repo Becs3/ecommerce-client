@@ -54,11 +54,14 @@ export const SearchField = () => {
                 <section>
                     {i.pagemap.cse_thumbnail && (
                     <img src={i.pagemap.cse_thumbnail[0].src} alt={i.title} />)}
+                    {!i.pagemap.cse_thumbnail && (
+                    <img src={'https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg'} />
+                  )}
                 </section>
                 <section>
-                    <h3>{i.htmlTitle}</h3>
+                    <h3>{i.title}</h3>
                     <p>{i.snippet}</p>
-                    <p>{i.link}</p>
+                    <a href={i.link} target="_blank" rel="noopener noreferrer"> To product page </a>
                 </section>
                 </div>
             ))
