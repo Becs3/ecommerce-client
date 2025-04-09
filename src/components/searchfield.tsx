@@ -1,9 +1,19 @@
 import axios from "axios";
 import { FormEvent, useState } from "react"
 
+interface IItem {
+    htmlTitle: string,
+    title: string,
+    link: string,
+    snippet: string
+    pagemap: {
+        cse_thumbnail: {src: string}[]
+    }
+}
+
 export const SearchField = () => {
     const [search, setSearch] = useState("");
-    //const [items, setItems] = useState([]);
+    const [items, setItems] = useState<IItem[]>([]);
 
     const handleSubmit = async(e:FormEvent) => {
         e.preventDefault();
@@ -37,7 +47,16 @@ export const SearchField = () => {
         </div>
 
         <div>
-
+            {items.map((i) => (
+                <div key={i.title}>
+                    <h3>{i.htmlTitle}</h3>
+                    <p>{i.snippet}</p>
+                    {i.pagemap.cse_thumbnail && (
+                    <img src={i.pagemap.cse_thumbnail[0].src} alt={i.title} />
+                )}
+                </div>
+            ))
+        }
         </div>
         </>
     )

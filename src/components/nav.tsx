@@ -18,9 +18,6 @@ export const Nav = () =>{
                 <li>
                     <NavLink to={"/cart"}>Cart</NavLink>
                 </li>
-                <li>
-                    <SearchField />
-                </li>
             </ul>
         </nav>
     )
