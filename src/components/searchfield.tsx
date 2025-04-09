@@ -17,6 +17,7 @@ export const SearchField = () => {
                 }
             })
             console.log(response.data)
+            console.log(response.data.items)
         }
         catch (error) {
             throw new Error
