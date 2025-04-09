@@ -1,5 +1,4 @@
 import { NavLink } from "react-router"
-import { SearchField } from "./searchfield"
 
 export const Nav = () =>{
 
