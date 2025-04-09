@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FormEvent, useState } from "react";
+import "../style/searchStyle.css"
 
 interface IItem {
   htmlTitle: string;
