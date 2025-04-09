@@ -1,0 +1,6 @@
+.item-container {
+ display: flex;
+ flex-direction: row;
+ border: 1px solid grey;
+ padding: 5px;   
+}

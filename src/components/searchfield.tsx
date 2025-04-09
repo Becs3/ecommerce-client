@@ -39,6 +39,7 @@ export const SearchField = () => {
         <>
         <div>
         <form onSubmit={handleSubmit}>
+            <h3>Didn't find what you were looking for?</h3>
         <input type="text" 
         placeholder="Search"
         value={search}
@@ -49,12 +50,16 @@ export const SearchField = () => {
 
         <div>
             {items.map((i) => (
-                <div key={i.title}>
+                <div key={i.title} className="item-container">
+                <section>
+                    {i.pagemap.cse_thumbnail && (
+                    <img src={i.pagemap.cse_thumbnail[0].src} alt={i.title} />)}
+                </section>
+                <section>
                     <h3>{i.htmlTitle}</h3>
                     <p>{i.snippet}</p>
-                    {i.pagemap.cse_thumbnail && (
-                    <img src={i.pagemap.cse_thumbnail[0].src} alt={i.title} />
-                )}
+                    <p>{i.link}</p>
+                </section>
                 </div>
             ))
         }
