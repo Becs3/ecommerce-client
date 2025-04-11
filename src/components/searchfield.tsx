@@ -15,10 +15,8 @@ interface IItem {
 export const SearchField = () => {
   const [search, setSearch] = useState("");
   const [items, setItems] = useState<IItem[]>([]);
-  const [startIndex, setStartIndex] = useState<number>(1);
-  const [totalResults, setTotalResults] = useState<number>(0);
 
-  const handleSubmit = async (e: FormEvent, newStartIndex = 1) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
@@ -29,8 +27,6 @@ export const SearchField = () => {
             q: search,
             key: "AIzaSyDITH2Uodl-gRbDOTkTswgrjnGRdf2UyAM",
             cx: "a1d5341d6864e43b3",
-            start: newStartIndex,
-            num: 10,
           },
         }
       );
@@ -46,8 +42,6 @@ export const SearchField = () => {
 
       console.log(result);
       setItems(result.items);
-      setTotalResults(result.searchInformation.totalresults);
-      setStartIndex(newStartIndex);
     } catch (error) {
       throw new Error();
     }
