@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import { useProducts } from "../hooks/useProduct";
 import "../style/productPageStyle.css"
 import CategorySearch from "../components/searchCategory";
-import { SearchField } from "../components/searchfield";
 
 export const ProductsPage = () => {
     const {products, isLoading, error, fetchProductsHandler } = useProducts();
