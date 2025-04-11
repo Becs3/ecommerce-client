@@ -64,6 +64,7 @@ export const SearchField = () => {
 
   return (
     <>
+    <div>
 <div className="search-container">
   <form
     onSubmit={(e) => {
@@ -78,6 +79,7 @@ export const SearchField = () => {
     />
     <button type="submit">Search</button>
   </form>
+  </div>
 
   {items.length > 0 && (
     <div className="dropdown" ref={dropdownRef}>
