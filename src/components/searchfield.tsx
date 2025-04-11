@@ -52,6 +52,7 @@ export const SearchField = () => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setItems([]); // Close dropdown
+        setSearch("");
       }
     };
 
