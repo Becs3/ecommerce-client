@@ -55,70 +55,49 @@ export const SearchField = () => {
 
   return (
     <>
-      <div className="search-container">
-        <form
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}
+<div className="search-container">
+  <form
+    onSubmit={(e) => {
+      handleSubmit(e);
+    }}
+  >
+    <h3>Didn't find what you were looking for?</h3>
+    <input
+      type="text"
+      placeholder="Search"
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
+    <button type="submit">Search</button>
+  </form>
+
+  {items.length > 0 && (
+    <div className="dropdown">
+      {items.map((i) => (
+        <div
+          key={i.title}
+          className="dropdown-item"
+          onClick={() => window.open(i.link, "_blank")}
         >
-          <h3>Didn't find what you were looking for?</h3>
-          <input
-            type="text"
-            placeholder="Search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </form>
-      </div>
-
-      <div>
-        {!items ? (
-          <p>There are no results</p>
-        ) : (
-          items.map((i) => (
-            <div key={i.title} className="item-container">
-              <section className="item-section">
-                {i.pagemap.cse_thumbnail && (
-                  <img src={i.pagemap.cse_thumbnail[0].src} alt={i.title} />
-                )}
-                {!i.pagemap.cse_thumbnail && (
-                  <img
-                    src={
-                      "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg"
-                    }
-                  />
-                )}
-              </section>
-              <section className="item-section">
-                <h3>{i.title}</h3>
-                <p>{i.snippet}</p>
-                <a href={i.link} target="_blank" rel="noopener noreferrer">
-                  {" "}
-                  To product page{" "}
-                </a>
-              </section>
+          <div className="dropdown-item-content">
+            <img
+              src={
+                i.pagemap?.cse_thumbnail?.[0]?.src ||
+                "https://tacm.com/wp-content/uploads/2018/01/no-image-available.jpeg"
+              }
+              alt={i.title}
+              className="thumbnail"
+            />
+            <div>
+              <h4>{i.title}</h4>
+              <p>{i.snippet}</p>
             </div>
-          ))
-        )}
-        {items && items.length > 0 && (
-          <div className="pagination">
-            <button
-              disabled={startIndex <= 1}
-              onClick={(e) => handleSubmit(e, startIndex - 10)}
-            >
-              Previous
-            </button>
-
-            <button
-              disabled={startIndex + 10 > totalResults}
-              onClick={(e) => handleSubmit(e, startIndex + 10)}
-            >
-              Next
-            </button>
           </div>
-        )}
-      </div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
     </>
   );
 };
