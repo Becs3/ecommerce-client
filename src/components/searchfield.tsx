@@ -70,7 +70,6 @@ export const SearchField = () => {
       handleSubmit(e);
     }}
   >
-    <h3>Didn't find what you were looking for?</h3>
     <input
       type="text"
       placeholder="Search"

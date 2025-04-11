@@ -49,7 +49,6 @@ export const ProductsPage = () => {
                         </article>
                     ))}
                 </section>
-                <SearchField />
             </div>
         </>
     )
